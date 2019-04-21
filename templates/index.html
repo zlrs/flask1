@@ -14,14 +14,35 @@
 
     <button id="btn1">加载更多</button>
     <script>
+        let start = 0;
         $('button#btn1').click(function(){
-            $.ajax(
-                url='',
-                dataType='jsonp',
-                success = functon(data) {
-                    console.log("ajax success")
+            $.ajax({
+                type: "get",
+                dataType : "jsonp",
+                url: 'https://api.douban.com/v2/movie/in_theaters',
+                data: {
+                    'start': start
+                },
+                success: function(data){
+                    console.log(data);
+                    if(data['subjects'].length > 0) {
+                        for(i of data['subjects']){
+                            $('<li/>', {
+                                class: 'movie',
+                                html: i['title']
+                            }).appendTo($('#movie_list'));
+                        }
+                    }
+                    else {
+                        $('<li/>', {
+                            class: 'movie',
+                            html: '(完)'
+                        }).appendTo($('#movie_list'));
+                    }
+                    start += data['count'];
                 }
-            );
+            })
+
         })
     </script>
 </body>
