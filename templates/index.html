@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <script src="../static/jquery-3.4.0.js"> </script>
+</head>
+<body>
+    <div id="content">
+        <ul id="movie_list">
+
+        </ul>
+    </div>
+
+    <button id="btn1">加载更多</button>
+    <script>
+        $('button#btn1').click(function(){
+            $.ajax(
+                url='',
+                dataType='jsonp',
+                success = functon(data) {
+                    console.log("ajax success")
+                }
+            );
+        })
+    </script>
+</body>
+</html>
